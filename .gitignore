@@ -6,6 +6,6 @@ package-lock.json
 
 /.vscode/settings.json
 
-/dist
+# /dist
 /coverage
 /node_modules
