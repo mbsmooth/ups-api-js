@@ -67,6 +67,22 @@ export class API extends mix(BaseAPI).with(
 
         const transactionSrc = options.headers.transactionSrc || this.transactionSrc;
         if (transactionSrc) options.headers.transactionSrc = transactionSrc;
+
+        // add some fields to the header that UPS requires
+        if(!options.headers.transId) options.headers.transId = this.makeid(14)
+        if(!options.headers.transactionSrc) options.headers.transactionSrc = 'DEFAULT'
+        
+    }
+    
+    makeid(len){
+        var result           = '';
+        var char       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charLen = char.length;
+        for ( var i = 0; i < len; i++ ) {
+            result += char.charAt(Math.floor(Math.random() * 
+            charLen));
+        }
+        return result;
     }
 
     async authCallback(params, headers) {
